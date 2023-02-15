@@ -16,7 +16,7 @@ namespace Frisk_API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<FriskContext>(options => options.UseSqlServer("Server = (LocalDB)\\MSSQLLocalDB; Database = FriskDB; Trusted_Connection = True;"));
+            builder.Services.AddDbContext<FriskContext>(options => options.UseSqlServer("Server=193.10.202.73;Database=FriskDB;User ID=sa;Password=TSB100sql;MultipleActiveResultSets=true"));
 
             var app = builder.Build();
 
