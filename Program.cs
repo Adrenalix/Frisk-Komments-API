@@ -1,3 +1,6 @@
+using Frisk_API.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace Frisk_API
 {
     public class Program
@@ -13,14 +16,16 @@ namespace Frisk_API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<FriskContext>(options => options.UseSqlServer("Server = (LocalDB)\\MSSQLLocalDB; Database = FriskDB; Trusted_Connection = True;"));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+            //if (app.Environment.IsDevelopment())
+            //{
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            //}
 
             app.UseAuthorization();
 
