@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Frisk_API.Migrations
 {
     [DbContext(typeof(FriskContext))]
-    [Migration("20230215095738_initialcreate")]
+    [Migration("20230301100816_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,10 @@ namespace Frisk_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CommentId")
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReplyId")
                         .HasColumnType("int");
 
                     b.Property<string>("TextInput")
@@ -47,8 +50,6 @@ namespace Frisk_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CommentId");
-
                     b.ToTable("Comments");
                 });
 
@@ -60,10 +61,10 @@ namespace Frisk_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("RecieverId")
+                    b.Property<int>("RecieverUserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SenderId")
+                    b.Property<int>("SenderUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("TextInput")
@@ -76,18 +77,6 @@ namespace Frisk_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Messages");
-                });
-
-            modelBuilder.Entity("Frisk_API.Models.Comment", b =>
-                {
-                    b.HasOne("Frisk_API.Models.Comment", null)
-                        .WithMany("Replies")
-                        .HasForeignKey("CommentId");
-                });
-
-            modelBuilder.Entity("Frisk_API.Models.Comment", b =>
-                {
-                    b.Navigation("Replies");
                 });
 #pragma warning restore 612, 618
         }

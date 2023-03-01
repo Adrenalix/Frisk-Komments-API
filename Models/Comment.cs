@@ -6,8 +6,7 @@
         public int UserId { get; set; }
         public int EventId { get; set; }
         public string TextInput { get; set; }
-        public List <Comment>? Replies { get; set; }
+        public int ReplyId { get; set; }
         public DateTime TimeStamp { get; set; }
-
     }
 }
