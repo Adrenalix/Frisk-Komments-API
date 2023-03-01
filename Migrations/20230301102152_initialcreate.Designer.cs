@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Frisk_API.Migrations
 {
     [DbContext(typeof(FriskContext))]
-    [Migration("20230301100816_initialcreate")]
+    [Migration("20230301102152_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
