@@ -35,6 +35,14 @@ namespace Frisk_API.Controllers
                 ToListAsync();
         }
 
+        [HttpGet("comments/replies/{commentId}")]
+        public async Task<ActionResult<IEnumerable<Comment>>> GetReplies(int commentId)
+        {
+            return await _context.Comments.
+                Where(c => c.ReplyId == commentId).
+                ToListAsync();
+        }
+
         // GET: api/Comments/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Comment>> GetComment(int id)
