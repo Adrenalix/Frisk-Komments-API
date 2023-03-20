@@ -27,15 +27,16 @@ namespace Frisk_API.Controllers
             return await _context.Comments.ToListAsync();
         }
 
+
         [HttpGet("event/{eventId}")]
         public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsBelongingToEvent(int eventId)
         {
             return await _context.Comments.
-                Where(c => c.EventId == eventId).
+                Where(c => c.EventId == eventId && c.ReplyId == 0).
                 ToListAsync();
         }
 
-        [HttpGet("comments/replies/{commentId}")]
+        [HttpGet("replies/{commentId}")]
         public async Task<ActionResult<IEnumerable<Comment>>> GetReplies(int commentId)
         {
             return await _context.Comments.
